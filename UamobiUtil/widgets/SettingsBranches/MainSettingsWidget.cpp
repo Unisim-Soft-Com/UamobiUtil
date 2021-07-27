@@ -70,15 +70,15 @@ MainSettingsWidget::MainSettingsWidget(QWidget* parent)
 	wrkflinnLayout->setRowWrapPolicy(QFormLayout::WrapAllRows);
 	printTab->setLayout(printinnLayout);
     printinnLayout->addRow(tr("Printer support"), buildState);
-	printinnLayout->addRow(tr("Printer"), portType);
-    printinnLayout->addRow(tr("Port name"), portDesignation);
-    printinnLayout->addRow(tr("Port"), portNumber);
-    printinnLayout->addRow(tr("Printer name"), btDeviceName);
+    printinnLayout->addRow(tr("Printer"), portType);
 #ifndef Q_OS_WINCE
     portDesignation->hide();
     portNumber->hide();
+    printinnLayout->addRow(tr("Printer name"), btDeviceName);
 #else
     btDeviceName->hide();
+    printinnLayout->addRow(tr("Port name"), portDesignation);
+    printinnLayout->addRow(tr("Port"), portNumber);
 #endif
 	
 	printinnLayout->setRowWrapPolicy(QFormLayout::WrapAllRows);
@@ -269,10 +269,13 @@ void MainSettingsWidget::langChanged()
 	static_cast<QLabel*>(wrkflinnLayout->labelForField(fontDec))->setText(tr("font dec"));
 	static_cast<QLabel*>(wrkflinnLayout->labelForField(notificationsVolume))->setText(tr("Notifications volume"));
 	static_cast<QLabel*>(printinnLayout->labelForField(buildState))->setText(tr("Printer support"));
-	static_cast<QLabel*>(printinnLayout->labelForField(portDesignation))->setText(tr("Port name"));
-	static_cast<QLabel*>(printinnLayout->labelForField(portNumber))->setText(tr("Port"));
-	static_cast<QLabel*>(printinnLayout->labelForField(portType))->setText(tr("Printer"));
-	static_cast<QLabel*>(printinnLayout->labelForField(btDeviceName))->setText(tr("Printer name"));
+#ifndef Q_OS_WINCE
+    static_cast<QLabel*>(printinnLayout->labelForField(btDeviceName))->setText(tr("Printer name"));
+#else
+    static_cast<QLabel*>(printinnLayout->labelForField(portDesignation))->setText(tr("Port name"));
+    static_cast<QLabel*>(printinnLayout->labelForField(portNumber))->setText(tr("Port"));
+#endif
+    static_cast<QLabel*>(printinnLayout->labelForField(portType))->setText(tr("Printer"));
 }
 
 void MainSettingsWidget::AddressSelected(const QString& activated)

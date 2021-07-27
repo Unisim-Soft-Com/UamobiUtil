@@ -9,7 +9,7 @@ CONFIG += release
 DEFINES += DEBUG LINELLA
 greaterThan(QT_MAJOR_VERSION, 4): DEFINES += QT_VERSION5X
 lessThan(QT_MAJOR_VERSION, 5) : DEFINES += "Q_NULLPTR=0"
-#lessThan(QT_MAJOR_VERSION, 5) : QT += phonon
+lessThan(QT_MAJOR_VERSION, 5) : QT += phonon
 android: QT += bluetooth multimedia androidextras
 win32: DEFINES += "Q_FALLTHROUGH=__noop"
 win32: RC_FILE += uamobiutil.rc
@@ -19,7 +19,7 @@ wince* {
         INCLUDEPATH += C:/Qt/4.8.3-CE6-static/include
         CONFIG -= debug
         CONFIG += release
-        QT -= widgets
+        QT -= widgets phonon
         DEFINES += FTR_COM
         QMAKE_CXX += -Ox -GL
         QMAKE_LFLAGS += /LTCG

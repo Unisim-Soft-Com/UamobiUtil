@@ -60,7 +60,7 @@ MainPageWidget::MainPageWidget(QWidget* parent)
 	bottomPanelLayout->addWidget(settingsButton);
 	bottomPanelLayout->addWidget(refreshButton);
 
-    versionLabel->setText(QString::number(double(VERSION)) + " " + SUFFIX);
+    versionLabel->setText( normalizeFloatString(QString::number(double(VERSION)), 2) + " " + SUFFIX);
 	versionLabel->setFont(GENERAL_FONT);
 	hostLabel->setText(AppSettings->HttpUrl.section("/", 4, 4));
 	hostLabel->setFont(GENERAL_FONT);

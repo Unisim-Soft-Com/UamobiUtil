@@ -1,25 +1,8 @@
 #include "CountingDelegate.h"
 #include "networking/things.h"
 #include "widgets/utils/ElementsStyles.h"
+#include "submodules/UNAQtCommons/widgets/Scaling/ScalingUtilities.h"
 
-QString normalizeFloatString(QString fs)
-{
-    QString::iterator ch = fs.begin();
-	
-	int nullsToAppend = 0;
-    while (ch != fs.end())
-	{
-		if (*ch == '.')
-		{
-            nullsToAppend = 4 - (fs.end() - ch);
-			break;
-		}
-		++ch;
-	}
-	if (nullsToAppend > 0)
-		fs = fs.leftJustified(fs.count() + nullsToAppend, '0');
-	return fs;
-}
 static QColor shadeOfGray(225, 226, 227);
 
 QRect CountingItemDelegate::drawNameRect(QPainter* painter, const QStyleOptionViewItem& option, bool isOdd) const

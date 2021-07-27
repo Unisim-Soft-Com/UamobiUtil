@@ -6,6 +6,7 @@
 #include "widgets/BranchingTools/EmbeddedBranches.h"
 #include "widgets/BranchingTools/BranchException.h"
 #include "submodules/UNAQtCommons/wrappers/Sound/SoundEffectPlayer.h"
+#include "submodules/UNAQtCommons/widgets/Scaling/ScalingUtilities.h"
 #if defined (Q_OS_ANDROID)
 #include <QtAndroid>
 const QVector<QString> permissions({ "android.permission.ACCESS_COARSE_LOCATION",
