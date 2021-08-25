@@ -60,6 +60,7 @@ namespace QueryTemplates
 		c[deleteInvoiceById] = queryTemplates.value(QStringLiteral("deleteInvoiceById"), QStringLiteral("doc_delete_invoice&session=%1&nn=%2")).toString();
 		c[editInvoiceById] = queryTemplates.value(QStringLiteral("editInvoiceById"), QStringLiteral("rec_edit_invoice&session=%1&old_value=%2%3")).toString();
 		c[editItemById] = queryTemplates.value(QStringLiteral("editItemById"), QStringLiteral("doc_result_delete_by_bc&session=%1&barcode=%2%3")).toString();
+		c[getShopLabel] = queryTemplates.value(QStringLiteral("getShopLabel"), QStringLiteral("print_department_label&session=%1&qty=%2&printer=%3")).toString();
 		if (!ok)
 		{
 			int i = 0;
@@ -110,6 +111,7 @@ namespace QueryTemplates
 			queryTemplates.setValue(QStringLiteral("deleteInvoiceById"), c[static_cast<QueryId>(i++)]);
 			queryTemplates.setValue(QStringLiteral("editInvoiceById"), c[static_cast<QueryId>(i++)]);
 			queryTemplates.setValue(QStringLiteral("editItemById"), c[static_cast<QueryId>(i++)]);
+			queryTemplates.setValue(QStringLiteral("getShopLabel"), c[static_cast<QueryId>(i++)]);
 		}
 		return c;
 	}
@@ -213,6 +215,8 @@ int getQueryArguments(const QueryId id)
 	case editInvoiceById:
 		return 2;
 	case editItemById:
+		return 2;
+	case getShopLabel:
 		return 2;
 	default:
 		return 0;

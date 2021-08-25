@@ -32,7 +32,10 @@ namespace independent_nodes
 		SkipNode,
 		SwitchByScanBc,
 		DefaultNode,
-		IdDependentMultiselect
+		IdDependentMultiselect,
+		NormalScaningWithPrint,
+		SelectItemByBarcode,
+		IdDependentSelectByBarcode
 	};
 }
 

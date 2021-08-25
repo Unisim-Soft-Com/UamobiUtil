@@ -6,6 +6,7 @@
 #include "submodules/UNAQtCommons/debug/debugtrace.h"
 #endif
 #include "widgets/ExtendedDelegates/ZebraListItemDelegate.h"
+#include "submodules/UNAQtCommons/widgets/Scaling/ScalingUtilities.h"
 void MainPageWidget::show_login_widget(User u)
 {
 	manualLogin->set_user(u);

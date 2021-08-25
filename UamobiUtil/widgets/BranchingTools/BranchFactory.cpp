@@ -22,9 +22,13 @@
 #include "widgets/Branches/SenderNode.h"
 #include "widgets/MultibranchWidgets/Observers/SkippedNode.h"
 #include "widgets/MultibranchWidgets/FlowControls/SwitchByScannedCodeNode.h"
+#include "widgets/MultibranchWidgets/ScaningRelated/NormalScaningWithPrintWidget.h"
+#include "widgets/MultibranchWidgets/Selectors/SelectItemByBarcodeWidget.h"
+#include "widgets/MultibranchWidgets/Selectors/IdDependendentSelectByBarcodeWidget.h"
 #ifdef DEBUG
 #include "submodules/UNAQtCommons/debug/debugtrace.h"
 #endif
+
 AbsBranch* BranchFactory::createNWBranch(QString description, QWidget* parent, independent_nodes::nodelist branchType)
 {
 	using namespace independent_nodes;
@@ -159,6 +163,22 @@ namespace BranchNodeFactory {
 			break;
 		case IdDependentMultiselect:
 			element = new IdDependMultiselectWidget(e->entity, parent);
+			break;
+		case NormalScaningWithPrint:
+			element = new NormalScaningWithPrintWidget(parent,
+				((e->count() > 0) ? createNode(e->first(), Q_NULLPTR) : Q_NULLPTR),
+				((e->count() > 1) ? createNode(e->at(1), Q_NULLPTR) : Q_NULLPTR)
+			);
+			break;
+		case SelectItemByBarcode:
+			element = new SelectItemByBarcodeWidget(parent,
+				e->entity
+			);
+			break;
+		case IdDependentSelectByBarcode:
+			element = new SelectItemByBarcodeWidget(parent,
+				e->entity
+			);
 			break;
 		case DefaultNode:
 		default:

@@ -32,6 +32,9 @@ QHash<QString, independent_nodes::nodelist> _initBinding()
 	h["Default"] = DefaultNode;
 	h["SwitchByScanCode"] = SwitchByScanBc;
 	h["IdDependMultiselect"] = IdDependentMultiselect;
+	h["NormalScaningWithPrint"] = NormalScaningWithPrint;
+	h["SelectItemByBarcode"] = SelectItemByBarcode;
+	h["IdDependentSelectByBarcode"] = IdDependentSelectByBarcode;
 	return h;
 }
 

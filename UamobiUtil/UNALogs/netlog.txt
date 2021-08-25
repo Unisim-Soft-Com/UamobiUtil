@@ -1,21 +1,21 @@
-Application start begins: version 0.19 lin-alpha
->>	415414583728425 sent request: http://92.115.237.226:60080/um/unitest.php?delay=0&cmd=ping
->>	415414583738659 sent request: http://92.115.237.226:60080/um/unitest.php?delay=1&cmd=list_users
-<<	415414583795134 received response going to 0 containing text:|
+Application start begins: version 0.21 lin-alpha
+>>	417253687340329 sent request: http://92.115.237.226:60080/um/unitest.php?delay=0&cmd=ping
+>>	417253687348515 sent request: http://92.115.237.226:60080/um/unitest.php?delay=1&cmd=list_users
+<<	417253687415486 received response going to 0 containing text:|
 	<?xml version="1.0" encoding="CP1251"?> <users>  <status>200</status> <manually>true</manually>  <servicename>Unimarket</servicename></users>
 	and error text |
->>	415414586233220 sent request: http://92.115.237.226:60080/um/unitest.php?delay=2&cmd=log_in&username=ai&password=1&version=0.19
-<<	415414586363105 received response going to 0 containing text:|
-	<?xml version="1.0" encoding="CP1251"?> <login>  <status>200</status> <session>3255</session>
+>>	417253692114820 sent request: http://92.115.237.226:60080/um/unitest.php?delay=2&cmd=log_in&username=dep01&password=dep01&version=0.21
+<<	417253692183265 received response going to 0 containing text:|
+	<?xml version="1.0" encoding="CP1251"?> <login>  <status>200</status> <session>3345</session>
 </login>
 	and error text |
->>	415414586365036 sent request: http://92.115.237.226:60080/um/unitest.php?delay=3&cmd=list_modes&session=3255&lang=English
-<<	415414586418902 received response going to 0 containing text:|
-	<?xml version="1.0" encoding="CP1251"?> <modes>  <status>200</status> <mode><modeName>inventory</modeName><captionMode>Inventory</captionMode><mode>inventory</mode><submode></submode></mode> <mode><modeName>ordersandsldcorrection</modeName><captionMode>Orders and sold corrrection</captionMode><mode>receipt</mode><submode>ordersandsldcorrection</submode></mode> <mode><modeName>printing</modeName><captionMode>Printing</captionMode><mode>printing</mode><submode></submode></mode> <mode><modeName>receipt</modeName><captionMode>Receipt</captionMode><mode>receipt</mode><submode></submode></mode> <mode><modeName>receiptfromwarehouses</modeName><captionMode>Receipt from warehouses</captionMode><mode>receipt</mode><submode>receiptfromwarehouses</submode></mode> <mode><modeName>partialinventory</modeName><captionMode>Stock correction</captionMode><mode>inventory</mode><submode>partialinventory</submode></mode> <mode><modeName>univscanact</modeName><captionMode>Universal scanning act</captionMode><mode>inventory</mode><submode>univscanact</submode></mode></modes>
+>>	417253692187244 sent request: http://92.115.237.226:60080/um/unitest.php?delay=3&cmd=list_modes&session=3345&lang=English
+<<	417253692247510 received response going to 0 containing text:|
+	<?xml version="1.0" encoding="CP1251"?> <modes>  <status>200</status> <mode><modeName>inventory</modeName><captionMode>Inventory</captionMode><mode>inventory</mode><submode></submode></mode> <mode><modeName>ordersandsldcorrection</modeName><captionMode>Orders and sold corrrection</captionMode><mode>receipt</mode><submode>ordersandsldcorrection</submode></mode> <mode><modeName>printing</modeName><captionMode>Printing</captionMode><mode>printing</mode><submode></submode></mode> <mode><modeName>receipt</modeName><captionMode>Receipt</captionMode><mode>receipt</mode><submode></submode></mode> <mode><modeName>receiptcrosscan</modeName><captionMode>Receipt Crosscan</captionMode><mode>receipt</mode><submode>receiptcrosscan</submode></mode> <mode><modeName>receiptfromwarehouses</modeName><captionMode>Receipt from warehouses</captionMode><mode>receipt</mode><submode>receiptfromwarehouses</submode></mode> <mode><modeName>partialinventory</modeName><captionMode>Stock correction</captionMode><mode>inventory</mode><submode>partialinventory</submode></mode> <mode><modeName>univscanact</modeName><captionMode>Universal scanning act</captionMode><mode>inventory</mode><submode>univscanact</submode></mode>  <place>   <code>124556</code>   <name>Sectia Uscate</name>  </place> </modes>
 	and error text |
->>	415414588407470 sent request: http://92.115.237.226:60080/um/unitest.php?delay=4&cmd=select_mode&session=3255&mode=receipt&submode=
-<<	415414588480594 received response going to 0 containing text:|
-	<?xml version="1.0" encoding="CP1251"?> <mode>  <status>200</status>  <desc> <![CDATA[ [PlaceSelect]
+>>	417253692721070 sent request: http://92.115.237.226:60080/um/unitest.php?delay=4&cmd=select_mode&session=3345&mode=receipt&submode=receiptcrosscan
+<<	417253692781906 received response going to 0 containing text:|
+	<?xml version="1.0" encoding="CP1251"?> <mode>  <status>200</status>  <desc> <![CDATA[ 
 [SwitchByScanCode]
 %Supplier%
 <rec_get_supplier_by_barcode&session=%1&barcode=%2>
@@ -24,38 +24,62 @@ Application start begins: version 0.19 lin-alpha
 {
 [SelectItemFromList]
 %Supplier%
+<rec_list_suppliers&session=%1&text=%2&hasorders=%3 : text , has_orders>
+<select_supplier&session=%1&supplier=%2 : id>
 }
 }
+[SelectItemByBarcode]
+%Place%
+<rec_list_dep_from_tran_orders&session=%1&text=%2 : text>
+<select_department&session=%1&department=%2 : id>
 [IdDependMultiselect]
 %Order%
 <rec_get_order_info_multi&session=%1&order=%2&supplier=%3 : itemId , depId>
-<rec_list_orders_sel&session=%1&supplier=%2 : id>
-[NormalScaning]
+<rec_list_session_orders_sel&session=%1 : id>
+[
+[NormalScaningWithPrint]
 {
 [EditableDocResults]
 }
 <>
+<>
+<>
+<>
+<print_department_label&session=%1&qty=1&printer=%2 : printer>
 *-6* ]]> </desc></mode>
 	and error text |
->>	415414588481936 sent request: http://92.115.237.226:60080/um/unitest.php?delay=5&cmd=list_places&session=3255
-<<	415414588507209 received response going to 0 containing text:|
-	<?xml version="1.0" encoding="CP1251"?> <places>  <status>200</status>  <place>   <code>205</code>   <name>L-05 str. Onisifor Ghibu 7/2</name>  </place>  <place>   <code>216</code>   <name>L-16 str. Alba Iulia 196/4</name>  </place>  <place>   <code>249</code>   <name>L-49 bd. Grigore Vieru, 18</name>  </place> </places>
+>>	417253693490832 sent request: http://92.115.237.226:60080/um/unitest.php?delay=5&cmd=rec_list_suppliers&session=3345&text=&hasorders=true
+<<	417253693507401 received response going to 5 containing text:|
+	<?xml version="1.0" encoding="CP1251"?> <suppliers>  <status>200</status>  <supplier>   <code>20041</code>   <name>Instacon SRL</name>   <orders>2</orders>  </supplier> </suppliers>
 	and error text |
->>	415414588951281 sent request: http://92.115.237.226:60080/um/unitest.php?delay=6&cmd=select_place&session=3255&place=216
-<<	415414588987121 received response going to 0 containing text:|
+>>	417253694607089 sent request: http://92.115.237.226:60080/um/unitest.php?delay=6&cmd=select_supplier&session=3345&supplier=20041
+<<	417253694616305 received response going to 4 containing text:|
+	<?xml version="1.0" encoding="CP1251"?> <supplier>  <status>200</status> </supplier>
+	and error text |
+>>	417253695162043 sent request: http://92.115.237.226:60080/um/unitest.php?delay=7&cmd=rec_list_dep_from_tran_orders&session=3345&text=
+<<	417253695170793 received response going to 5 containing text:|
+	<?xml version="1.0" encoding="CP1251"?> <places>  <status>200</status>  <place>   <code>205</code>   <name>L-05 str. Onisifor Ghibu 7/2</name>   <orders>1</orders>  </place>  <place>   <code>216</code>   <name>L-16 str. Alba Iulia 196/4</name>   <orders>1</orders>  </place> </places>
+	and error text |
+>>	417253697721835 sent request: http://92.115.237.226:60080/um/unitest.php?delay=8&cmd=select_department&session=3345&department=205
+<<	417253697761971 received response going to 4 containing text:|
 	<?xml version="1.0" encoding="CP1251"?> <place>  <status>200</status> </place>
 	and error text |
->>	415414589284795 sent request: http://92.115.237.226:60080/um/unitest.php?delay=7&cmd=rec_list_suppliers&session=3255&text=&hasorders=true
-<<	415414589299177 received response going to 5 containing text:|
-	<?xml version="1.0" encoding="CP1251"?> <suppliers>  <status>200</status>  <supplier>   <code>20041</code>   <name>Instacon SRL</name>   <orders>4</orders>  </supplier> </suppliers>
-	and error text |
->>	415414589599979 sent request: http://92.115.237.226:60080/um/unitest.php?delay=8&cmd=rec_list_orders_sel&session=3255&supplier=20041
-<<	415414589612723 received response going to 0 containing text:|
-	<?xml version="1.0" encoding="CP1251"?> <orders>  <status>200</status>  <order>   <code>18860157</code>   <title>Nr. cererii: 18860157</title>
-  <text>03.06.21 - 04.06.21, 5  </text>  </order>  <order>   <code>18860156</code>   <title>Nr. cererii: 18860156</title>
-  <text>03.06.21 - 04.06.21, 5  </text>  </order>  <order>   <code>18860155</code>   <title>Nr. cererii: 18860155</title>
-  <text>03.06.21 - 04.06.21, 5  </text>  </order>  <order>   <code>18860154</code>   <title>Nr. cererii: 18860154</title>
-  <text>03.06.21 - 04.06.21, 5  </text>  </order> 
+>>	417253697776294 sent request: http://92.115.237.226:60080/um/unitest.php?delay=9&cmd=rec_list_session_orders_sel&session=3345
+<<	417253697784283 received response going to 0 containing text:|
+	<?xml version="1.0" encoding="CP1251"?> <orders>  <status>200</status>  <order>   <code>18860934</code>   <title>Nr. cererii: 18860934</title>
+  <text>23.08.21 - 23.08.21, 14  </text>  </order> 
 <supplier>Instacon SRL</supplier>
-<selection>1,1,1,1</selection> </orders>
+<selection>1</selection> </orders>
+	and error text |
+>>	417253698667836 sent request: http://92.115.237.226:60080/um/unitest.php?delay=10&cmd=rec_get_order_info_multi&session=3345&order=18860934&supplier=205
+<<	417253698674311 received response going to 0 containing text:|
+	<?xml version="1.0" encoding="CP1251"?> <order>  <status>200</status> <richdata> <![CDATA[  <div><b> Instacon SRL</b></div>  <div><b>Doc. nr.:</b> 18860934</div> <hr><div>Compot "Piersic" 820g - <b>60</b></div><hr> <div>FARMER Ulei din olive EXTRA VIRGIN 500ml - <b>60</b></div><hr> <div>Ardei rosii si verzi umpluti cu brinza 210gr - <b>30</b></div><hr> <div>Olive verzi umplute cu brinza si rosii  210g - <b>20</b></div><hr> <div>Ciuperci Sampinioni Best Time sterilizate taiate 3.1ml (1/6) - <b>20</b></div><hr> <div>Pasta de tomate Krasnodarskaia 1000g - <b>16</b></div><hr> <div>Baltijos Sprote in ulei Vilnis 190gr (1/24) - <b>14</b></div><hr> <div>Masline Atlas BG Greko c/s 820 ml/12 71-90 - <b>20</b></div><hr> <div>Akvarium Sprote in ulei 150g (1/36) - <b>10</b></div><hr> <div>Iliada Mazare verde conservata 580ml - <b>10</b></div><hr> <div>Miere de albine artificala КРИСТАЛ  850g (1/12) - <b>24</b></div><hr> <div>Iliada Castraveti marinati 720ml - <b>20</b></div><hr> <div>Ulei de floarea soarelui rafinat  Россиянка 2l - <b>16</b></div><hr> <div>FLORAVITA Ulei rafinat/dezodorizat 900ml (1/15) - <b>24</b></div><hr> ]]> </richdata> </order>
+	and error text |
+>>	417253698726668 sent request: http://92.115.237.226:60080/um/unitest.php?delay=11&cmd=rec_new_doc&session=3345&date=25.08.2021&parent=18860934&comment=
+<<	417253698748734 received response going to 31 containing text:|
+	<?xml version="1.0" encoding="CP1251"?> <newdoc>  <status>200</status>  <doc>   <code>3753242</code>   <parentnr>18860935</parentnr>   <supplier>Instacon SRL</supplier>   <date>25.08.2021</date>   <comment></comment>   <closed>false</closed>   <canceled>false</canceled>   <locked>false</locked>   <scanmode>simple</scanmode>  </doc> </newdoc>
+	and error text |
+>>	417253703565721 sent request: http://92.115.237.226:60080/um/unitest.php?delay=12&cmd=rec_add_order_doc&session=3345&nrdoc=&parents=1
+<<	417253703578916 received response going to 40 containing text:|
+	<?xml version="1.0" encoding="CP1251"?> <add_rel>  <status>200</status> </add_rel>
 	and error text |

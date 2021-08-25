@@ -521,14 +521,23 @@
     <ClCompile Include="datacore\EntityListEntity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="widgets\MultibranchWidgets\Selectors\IdDependMultiselectWidget.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="datacore\UtilitiyEntities.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="datacore\UtilityEntities.cpp">
       <Filter>Source Files\Datacore</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\MultibranchWidgets\ScaningRelated\NormalScaningWithPrintWidget.cpp">
+      <Filter>Source Files\MultibranchWidgets\ScaningRelated</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\MultibranchWidgets\Selectors\SelectItemByBarcodeWidget.cpp">
+      <Filter>Source Files\MultibranchWidgets\Selectors</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\MultibranchWidgets\Selectors\IdDependendentSelectByBarcodeWidget.cpp">
+      <Filter>Source Files\MultibranchWidgets\Selectors</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\MultibranchWidgets\Selectors\IdDependMultiselectWidget.cpp">
+      <Filter>Source Files\MultibranchWidgets\Selectors</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -726,6 +735,15 @@
     </QtMoc>
     <QtMoc Include="widgets\Branches\SwitchSubbranch.h">
       <Filter>Header Files\Branches</Filter>
+    </QtMoc>
+    <QtMoc Include="widgets\MultibranchWidgets\ScaningRelated\NormalScaningWithPrintWidget.h">
+      <Filter>Header Files\MultibranchWidgets\ScaningRelated</Filter>
+    </QtMoc>
+    <QtMoc Include="widgets\MultibranchWidgets\Selectors\SelectItemByBarcodeWidget.h">
+      <Filter>Header Files\MultibranchWidgets\Selectors</Filter>
+    </QtMoc>
+    <QtMoc Include="widgets\MultibranchWidgets\Selectors\IdDependendentSelectByBarcodeWidget.h">
+      <Filter>Header Files\MultibranchWidgets\Selectors</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>

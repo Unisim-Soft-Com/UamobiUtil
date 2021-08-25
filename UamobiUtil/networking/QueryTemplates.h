@@ -61,7 +61,8 @@ namespace QueryTemplates
 		addIdToParentDocs,
 		deleteInvoiceById,
 		editInvoiceById,
-		editItemById
+		editItemById,
+		getShopLabel				// 2 arguments required
 	};
 
 	// this function is used for initializing cache in old compilers
